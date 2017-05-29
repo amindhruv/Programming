@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chessboard</title>
+	<style type="text/css">
+		td {
+			border:1px solid black;
+			width:50px;
+			height:50px;
+		}
+		.white {
+			background-color: #FFFFFF;
+		}
+		.black {
+			background-color: #000000;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		var table = document.createElement("table");
+		for (var i = 1; i < 9; i++) {
+		    var tr = document.createElement('tr');
+		    for (var j = 1; j < 9; j++) {
+		        var td = document.createElement('td');
+		        if (i%2 == j%2) {
+		            td.className = "white";
+		        } else {
+		            td.className = "black";
+		        }
+		        tr.appendChild(td);
+		    }
+		    table.appendChild(tr);
+		}
+		document.body.appendChild(table);
+	</script>
+</body>
+</html>
