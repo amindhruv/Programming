@@ -16,7 +16,7 @@ public class MedianOfTwoSortedArrays {
                 if ((x + y) % 2 == 0)    // If total array size is even
                     return (Math.max(maxLeftX, maxLeftY) + Math.min(minRightX, minRightY)) / 2.0;
                 else    // If total array size is odd
-                    return (float) Math.max(maxLeftX, maxLeftY);
+                    return (double) Math.max(maxLeftX, maxLeftY);
             } else if (maxLeftX > minRightY)    // Too far on right side of partitionX, go left
                 high = partitionX - 1;
             else    // Too far on left side of partitionX, go right
