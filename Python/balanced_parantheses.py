@@ -11,7 +11,7 @@ def balanced_parantheses(check_this):
                 return False
             else:
                 stack.pop()
-    return True if len(stack) == 0 else False
+    return len(stack) == 0
 
 
 if __name__ == '__main__':
