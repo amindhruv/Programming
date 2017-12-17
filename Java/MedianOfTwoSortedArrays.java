@@ -1,7 +1,7 @@
 public class MedianOfTwoSortedArrays {
     private static double medianOfTwoSortedArrays(int[] first, int[] second) {
         if (first.length > second.length)
-            medianOfTwoSortedArrays(second, first);    // To always assure- first array size not bigger than second one
+            return medianOfTwoSortedArrays(second, first);    // To always assure- first array size not bigger than second one
 
         int x = first.length, y = second.length, low = 0, high = x;
 
