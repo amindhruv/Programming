@@ -21,8 +21,7 @@ public class ReverseLL {
     }
 
     private static LinkedList.Node reverse(LinkedList.Node head) {
-        LinkedList.Node current, prev = null, next;
-        current = head;
+        LinkedList.Node current = head, prev = null, next;
         while (current != null) {
             next = current.next;
             current.next = prev;
