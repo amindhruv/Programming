@@ -1,6 +1,6 @@
 public class BSinRotated {
     public static void main(String[] args) {
-        int[] nums = {1, 3};
+        int[] nums = {5, 6, 1, 3, 4};
         int key = 3;
         int index = binarySearchInRotatedArray(nums, key);
         if (index != -1)
