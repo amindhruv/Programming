@@ -65,8 +65,7 @@ public class IterativeTreeTraversals {
     		} else if (curr.left == prev) {
     			if (curr.right != null) st.push(curr.right);
     		} else {
-    			System.out.print(curr.value + " ");
-    			st.pop();
+    			System.out.print(st.pop().value + " ");
     		}
     		prev = curr;
     	}
