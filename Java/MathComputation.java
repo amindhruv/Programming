@@ -13,9 +13,17 @@ public class MathComputation {
         number = sc.nextInt();
         System.out.println("Integer cube root of " + number + ": " + cubeRoot(number));
         System.out.print("Enter base and exponent to compute power: ");
-        float base = sc.nextFloat();
+        double base = sc.nextDouble();
         int exponent = sc.nextInt();
         System.out.println(base + "^" + exponent + ": " + power(base, exponent));
+        System.out.println("Using iterative approach -> " + base + "^" + exponent + ": " + power(base, exponent));
+        System.out.print("Enter a number to reverse: ");
+        number = sc.nextInt();
+        System.out.println("Reversed number: " + reverse(number));
+        System.out.print("Enter a number to to check if it's palindrome or not: ");
+        number = sc.nextInt();
+        System.out.println("Entered number is " + (isPalindrome(number) ? "" : "not ") + "palindrome.");
+        sc.close();
     }
 
     private static void factorial(int num) {
@@ -76,18 +84,48 @@ public class MathComputation {
         }
         return isMinus ? -ans : ans;
     }
-
-    private static double power(float x, int y) {
-        if (y == 0)
-            return 1;
-        double temp = power(x, y / 2);
-        if (y % 2 == 0)
-            return temp * temp;
-        else {
-            if (y > 0)
-                return x * temp * temp;
-            else
-                return (temp * temp) / x;
+    
+    private static int reverse(int num) {
+        long rev = 0;
+        while (num != 0) {
+            rev = rev * 10 + num % 10;
+            num /= 10;
+            if (rev < Integer.MIN_VALUE || rev > Integer.MAX_VALUE) return 0;
         }
+        return (int)rev;
+    }
+
+    private static boolean isPalindrome(int num) {
+        if (num < 0 || (num != 0 && num % 10 == 0)) return false;
+        int rev = 0;
+        while (num > rev) {
+            rev = rev * 10 + num % 10;
+            num /= 10;
+        }
+        return num == rev || num == rev / 10;
+    }
+
+    private static double power(double x, int n) {
+        if (n == 0) return 1;
+        if (n == 1) return x;
+        if (n < 0) return 1 / power(x, -n);
+        double temp = power(x, n / 2);
+        return n % 2 == 0 ? temp * temp : temp * temp * x;
+    }
+
+    private static double powerIterative(double x, int n) {
+        if (n == 0) return 1;
+        if (n == 1) return x;
+        if (n < 0) {
+            x = 1 / x;
+            n = -n;
+        }
+        double result = 1;
+        while (n != 0) {
+            if ((n & 1) == 1) result *= x;
+            x *= x;
+            n >>= 1;
+        }
+        return result;
     }
 }
