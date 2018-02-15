@@ -1,13 +1,16 @@
 def get_products_of_all_ints_except_at_index(int_list):
   # Make a list of the products
-  result, product = [None] * len(int_list), 1
-  for i in xrange(len(int_list)):
-    result[i] = product
-    product *= int_list[i]
+  
+  # Greedy approach with O(n) time and O(1) space complexity
+  size, product = len(int_list), 1
+  result = [None] * size
+  for index in xrange(size):
+    result[index] = product
+    product *= int_list[index]
   product = 1
-  for i in xrange(len(int_list) - 1, -1, -1):
-    result[i] *= product
-    product *= int_list[i]
+  for index in xrange(size - 1, -1, -1):
+    result[index] *= product
+    product *= int_list[index]
   return result
 
 
