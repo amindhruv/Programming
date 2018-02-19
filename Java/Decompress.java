@@ -1,5 +1,7 @@
+import java.util.Stack;
+
 public class Decompress {
-  public String decompress(String compressed) {
+  public static String decompress(String compressed) {
     Stack<Integer> intStack = new Stack<>();
     Stack<StringBuilder> strStack = new Stack<>();
     StringBuilder cur = new StringBuilder();
