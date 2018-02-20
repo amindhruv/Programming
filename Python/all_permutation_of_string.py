@@ -1,6 +1,7 @@
 def permutation(s):
     helper('', s)
 
+
 def helper(prefix, s):
     n = len(s)
     if n == 0:
