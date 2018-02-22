@@ -9,10 +9,9 @@ class BSTNode():
 def lowest_common_ancestor(root, first, second):
     if root.value > max(first.value, second.value):
         return lowest_common_ancestor(root.left, first, second)
-    elif root.value < min(first.value, second.value):
+    if root.value < min(first.value, second.value):
         return lowest_common_ancestor(root.right, first, second)
-    else:
-        return root.value
+    return root.value
 
 
 if __name__ == '__main__':
