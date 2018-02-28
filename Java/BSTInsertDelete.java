@@ -1,6 +1,6 @@
 public class BSTInsertDelete {
     public static void main(String[] args) {
-        CreateBST.Node root = insert(null, 5);
+        TreeNode root = insert(null, 5);
         root = insert(root, 10);
         root = insert(root, 3);
         root = insert(root, 4);
@@ -13,7 +13,7 @@ public class BSTInsertDelete {
         System.out.println();
     }
 
-    private static CreateBST.Node delete(CreateBST.Node root, int value) {
+    private static TreeNode delete(TreeNode root, int value) {
         if (root == null) return null;
         else if (value < root.data) root.left = delete(root.left, value);
         else if (value > root.data) root.right = delete(root.right, value);
@@ -22,7 +22,7 @@ public class BSTInsertDelete {
             else if (root.left == null) root = root.right;
             else if (root.right == null) root = root.left;
             else {
-                CreateBST.Node temp = findMin(root.right);
+                TreeNode temp = findMin(root.right);
                 root.data = temp.data;
                 root.right = delete(root.right, temp.data);
             }
@@ -30,22 +30,28 @@ public class BSTInsertDelete {
         return root;
     }
 
-    private static CreateBST.Node findMin(CreateBST.Node root) {
+    private static TreeNode findMin(TreeNode root) {
         while (root.left != null) root = root.left;
         return root;
     }
 
-    private static void inOrderPrint(CreateBST.Node root) {
+    private static void inOrderPrint(TreeNode root) {
         if (root == null) return;
         inOrderPrint(root.left);
         System.out.print(root.data + " ");
         inOrderPrint(root.right);
     }
 
-    private static CreateBST.Node insert(CreateBST.Node root, int value) {
-        if (root == null) root = new CreateBST.Node(value);
+    private static TreeNode insert(TreeNode root, int value) {
+        if (root == null) root = new TreeNode(value);
         else if (value < root.data) root.left = insert(root.left, value);
         else root.right = insert(root.right, value);
         return root;
     }
+    
+    /*class TreeNode {
+        int data;
+        TreeNode left, right;
+        TreeNode(int data) { this.data = data; }
+    }*/
 }
