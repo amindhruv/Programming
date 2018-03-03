@@ -1,17 +1,17 @@
 public class InOrderSuccessor {
     public static void main(String[] args) {
-        CreateBST.Node root = new CreateBST.Node(15);
-        root.left = new CreateBST.Node(10);
-        root.right = new CreateBST.Node(20);
-        root.left.left = new CreateBST.Node(8);
-        root.left.right = new CreateBST.Node(12);
-        root.left.left.left = new CreateBST.Node(6);
-        root.left.right.left = new CreateBST.Node(11);
-        root.right.left = new CreateBST.Node(17);
-        root.right.right = new CreateBST.Node(25);
-        root.right.left.left = new CreateBST.Node(16);
-        root.right.right.right = new CreateBST.Node(27);
-        CreateBST.Node successor = inOrderSuccessor(root, 10);  //Case 1: if node has right child
+        TreeNode root = new TreeNode(15);
+        root.left = new TreeNode(10);
+        root.right = new TreeNode(20);
+        root.left.left = new TreeNode(8);
+        root.left.right = new TreeNode(12);
+        root.left.left.left = new TreeNode(6);
+        root.left.right.left = new TreeNode(11);
+        root.right.left = new TreeNode(17);
+        root.right.right = new TreeNode(25);
+        root.right.left.left = new TreeNode(16);
+        root.right.right.right = new TreeNode(27);
+        TreeNode successor = inOrderSuccessor(root, 10);  //Case 1: if node has right child
         System.out.println(successor == null ? "No successor found!" : successor.data);
         successor = inOrderSuccessor(root, 8);  //Case 2 : if node doesn't have right child & going up from left
         System.out.println(successor == null ? "No successor found!" : successor.data);
@@ -26,12 +26,12 @@ public class InOrderSuccessor {
         System.out.println(successor == null ? "No successor found!" : successor.data);
     }
 
-    private static CreateBST.Node inOrderSuccessor(CreateBST.Node root, int data) { //O(lg n)
-        CreateBST.Node current = find(root, data);
+    private static TreeNode inOrderSuccessor(TreeNode root, int data) { //O(lg n)
+        TreeNode current = find(root, data);
         if (current == null) return null;
         if (current.right != null) return findMin(current.right);
-        CreateBST.Node successor = null;
-        CreateBST.Node ancestor = root;
+        TreeNode successor = null;
+        TreeNode ancestor = root;
         while (ancestor != current) {
             if (current.data < ancestor.data) {
                 successor = ancestor;
@@ -41,15 +41,21 @@ public class InOrderSuccessor {
         return successor;
     }
 
-    private static CreateBST.Node findMin(CreateBST.Node root) {    //O(lg n)
+    private static TreeNode findMin(TreeNode root) {    //O(lg n)
         while (root.left != null) root = root.left;
         return root;
     }
 
-    private static CreateBST.Node find(CreateBST.Node root, int data) { //O(lg n)
+    private static TreeNode find(TreeNode root, int data) { //O(lg n)
         if (root == null) return null;
         if (data == root.data) return root;
         else if (data < root.data) return find(root.left, data);
         else return find(root.right, data);
     }
+    
+    /*class TreeNode {
+        int data;
+        TreeNode left, right;
+        TreeNode(int data) { this.data = data; }
+    }*/
 }
