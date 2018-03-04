@@ -1,12 +1,12 @@
 public class SumOfNodes {
     public static void main(String[] args) {
-        CreateBST.Node root = new CreateBST.Node(1);
-        root.left = new CreateBST.Node(2);
-        root.right = new CreateBST.Node(3);
-        root.left.left = new CreateBST.Node(4);
-        root.left.right = new CreateBST.Node(5);
-        root.right.left = new CreateBST.Node(6);
-        root.right.right = new CreateBST.Node(7);
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new vNode(5);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
         System.out.println("Sum of all nodes: " + sumOfNodes(root));
         System.out.println("Sum of all even nodes: " + sumOfEvenNodes(root));
         System.out.println("Sum of all odd nodes: " + sumOfOddNodes(root));
@@ -18,23 +18,23 @@ public class SumOfNodes {
         System.out.println();
     }
 
-    private static int sumOfNodes(CreateBST.Node root) {
+    private static int sumOfNodes(TreeNode root) {
         return root == null ? 0 : root.data + sumOfNodes(root.left) + sumOfNodes(root.right);
     }
 
-    private static int sumOfEvenNodes(CreateBST.Node root) {
+    private static int sumOfEvenNodes(TreeNode root) {
         if (root == null)
             return 0;
         return (root.data % 2 != 0 ? 0 : root.data) + sumOfEvenNodes(root.left) + sumOfEvenNodes(root.right);
     }
 
-    private static int sumOfOddNodes(CreateBST.Node root) {
+    private static int sumOfOddNodes(TreeNode root) {
         if (root == null)
             return 0;
         return (root.data % 2 == 0 ? 0 : root.data) + sumOfOddNodes(root.left) + sumOfOddNodes(root.right);
     }
 
-    private static int printEachEvenSum(CreateBST.Node root) {
+    private static int printEachEvenSum(TreeNode root) {
         if (root == null)
             return 0;
         int sum = (root.data % 2 == 0 ? root.data : 0) + printEachEvenSum(root.left) + printEachEvenSum(root.right);
@@ -43,7 +43,7 @@ public class SumOfNodes {
         return sum;
     }
 
-    private static int printEachOddSum(CreateBST.Node root) {
+    private static int printEachOddSum(TreeNode root) {
         if (root != null) {
             int sum = (root.data % 2 != 0 ? root.data : 0) + printEachOddSum(root.left) + printEachOddSum(root.right);
             if (sum != 0)
@@ -52,4 +52,10 @@ public class SumOfNodes {
         }
         return 0;
     }
+    
+    /*class TreeNode {
+        int data;
+        TreeNode left, right;
+        TreeNode(int data) { this.data = data; }
+    }*/
 }
