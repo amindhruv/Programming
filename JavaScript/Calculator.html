@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="calcApp">
+<head>
+	<title>Calculator</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+	<h1>Calculator App</h1>
+	<div ng-controller="calcCtrl as ctrl">
+		<input type="number" name="first" ng-model="ctrl.first" />
+		<span>{{ctrl.operation}}</span>
+		<input type="number" name="second" ng-model="ctrl.second" />
+		<button ng-click="ctrl.equals()">=</button>
+		<span>{{ctrl.result}}</span>
+		<p>Choose operation: 
+		<button ng-click="ctrl.whichOp('+')">+</button>
+		<button ng-click="ctrl.whichOp('-')">-</button>
+		<button ng-click="ctrl.whichOp('*')">*</button>
+		<button ng-click="ctrl.whichOp('/')">/</button>
+	</p>
+	</div>
+	<script>
+		let app = angular.module("calcApp", [])
+		.controller("calcCtrl", calcCtrl);
+		function calcCtrl() {
+			this.whichOp = function(op) {
+				this.operation = op;
+			}
+			this.equals = function() {
+				switch(this.operation) {
+					case "+":
+						this.result = this.first + this.second;
+						break;
+					case "-":
+						this.result = this.first - this.second;
+						break;
+					case "*":
+						this.result = this.first * this.second;
+						break;
+					case "/":
+						this.result = this.first / this.second;
+						break;
+				}
+			}
+		}
+	</script>
+</body>
+</html>
