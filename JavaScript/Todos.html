@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="toDoApp">
+<head>
+	<title>Todo App</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+	<h1>Todo App</h1>
+	<div ng-controller="toDoCtrl as ctrl">
+		<div>
+			<p>Add a Todo:</p>
+			<input type="text" ng-model="ctrl.newTodo" />
+			<button ng-click="ctrl.add()">Add</button>
+		</div>
+		<div>
+			<p>Your Todos:</p>
+			<button ng-hide="ctrl.editMode" ng-click="ctrl.toggleEdit()">Edit</button>
+			<button ng-show="ctrl.editMode" ng-click="ctrl.toggleEdit()">Save</button>
+			<ol>
+				<li ng-repeat="todo in ctrl.todos track by $index">
+					<span ng-bind="todo" ng-hide="ctrl.editMode"></span>
+					<button ng-click="ctrl.delete($index)" ng-hide="ctrl.editMode">Delete</button>
+					<input type="text" ng-model="todo" ng-show="ctrl.editMode" />
+				</li>
+			</ol>				
+		</div>
+	</div>
+	<script>
+		let app = angular.module("toDoApp", [])
+		.controller("toDoCtrl", toDoCtrl);
+		function toDoCtrl() {
+			this.todos = ["Learn AngularJS 1", "Create an app"];
+			this.add = function() {
+				this.todos.push(this.newTodo);
+				this.newTodo = "";
+			}
+			this.toggleEdit = function() {
+				this.editMode = !this.editMode;
+			}
+			this.delete = function(index) {
+				this.todos.splice(index, 1);
+			}
+		}
+	</script>
+</body>
+</html>
