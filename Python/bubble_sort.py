@@ -5,9 +5,7 @@ def bubble_sort(sort_this):
         for j in range(n - i):
             if sort_this[j] > sort_this[j + 1]:
                 flag = True
-                temp = sort_this[j]
-                sort_this[j] = sort_this[j + 1]
-                sort_this[j + 1] = temp
+                sort_this[j], sort_this[j + 1] = sort_this[j + 1], sort_this[j]
         if not flag:
             break
 
