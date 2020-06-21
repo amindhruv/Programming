@@ -34,9 +34,7 @@ public class AllSortingAlgo {
             for (int j = i + 1; j < nums.length; j++)
                 if (nums[j] < nums[minIndex])
                     minIndex = j;
-            int temp = nums[minIndex];
-            nums[minIndex] = nums[i];
-            nums[i] = temp;
+            swap(nums, minIndex, i);
         }
     }
 
@@ -47,9 +45,7 @@ public class AllSortingAlgo {
             for (int j = 0; j < nums.length - i; j++) {
                 if (nums[j] > nums[j + 1]) {
                     flag = true;
-                    int temp = nums[j];
-                    nums[j] = nums[j + 1];
-                    nums[j + 1] = temp;
+                    swap(nums, j, j + 1);
                 }
             }
             if (!flag) break;
@@ -100,17 +96,15 @@ public class AllSortingAlgo {
     }
 
     private static int partition(int[] nums, int low, int high) {    //O(n)
-        int i = low - 1, temp;
+        int i = low - 1;
         for (int j = low; j < high; j++) {
-            if (nums[j] <= nums[high]) {
-                temp = nums[++i];
-                nums[i] = nums[j];
-                nums[j] = temp;
+            if (nums[j] < nums[high]) {
+                i++;
+                if (i != j) swap(nums, i, j);
             }
         }
-        temp = nums[++i];
-        nums[i] = nums[high];
-        nums[high] = temp;
+        i++;
+        swap(nums, i, high);
         return i;
     }
 
@@ -123,9 +117,7 @@ public class AllSortingAlgo {
         // One by one extract an element from heap
         for (int i = n - 1; i > 0; i--) {
             // Move current root to end
-            int temp = nums[0];
-            nums[0] = nums[i];
-            nums[i] = temp;
+            swap(nums, 0, i);
             // call max heapify on the reduced heap
             heapify(nums, i, 0);
         }
@@ -138,9 +130,7 @@ public class AllSortingAlgo {
         if (right < size && nums[right] > nums[largest])    // If right child is larger than largest so far
             largest = right;
         if (largest != i) {    // If largest is not root
-            int temp = nums[i];
-            nums[i] = nums[largest];
-            nums[largest] = temp;
+            swap(nums, i, largest);
             heapify(nums, size, largest);    // Recursively heapify the affected sub-tree
         }
     }
@@ -157,14 +147,10 @@ public class AllSortingAlgo {
             output[--count[num]] = num;
         System.arraycopy(output, 0, nums, 0, nums.length);
     }
-
-    private static void ss(int[] nums) { // 5 4 3 2 1
-        for (int i = 1; i < nums.length; i++) {
-            int j = i - 1, pivot = nums[i];
-            while (j >= 0 && nums[j] > pivot) {
-                nums[j + 1] = nums[j--];
-            }
-            nums[j + 1] = pivot;
-        }
+    
+    private static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }
